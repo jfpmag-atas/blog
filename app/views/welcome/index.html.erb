@@ -1,0 +1,25 @@
+<%= render "users/header" %>
+<h1>Home</h1>
+<%= link_to 'Post article', new_article_path %>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+  <% if current_user %>
+    <p><%= link_to 'View Articles', controller: 'articles' %></p>
+	<p><%= link_to 'New article', new_article_path %></p>
+  <% else %>
+      <% if @articles.each do |article| %>
+	    <tr>
+	      <td><%= article.title %></td>
+	      <td><%= article.text %></td>
+	      <td><%= link_to 'Show', article_path(article) %></td>
+	    </tr>
+	  <% end.empty? %>
+	    <tr>
+	      <td>There are no articles</td>
+	    </tr>
+	  <% end %>
+  <% end %>
+</table>

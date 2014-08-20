@@ -1,0 +1,53 @@
+<%#
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+%>
+<%= render "welcome/header" %>
+<h1>Listing articles</h1>
+<table>
+  <tr>
+    <td><%= link_to 'New article', new_article_path %></td>
+  </tr>
+  <tr height="20" />
+  <tr>
+  <th>My Articles</th>
+  </tr>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+
+  <% if @user_articles.each do |article| %>
+    <tr>
+      <td><%= article.title %></td>
+      <td><%= article.text %></td>
+      <td><%= link_to 'Show', article_path(article) %></td>
+      <td><%= link_to 'Edit', edit_article_path(article) %></td>
+      <td><%= link_to 'Delete', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end.empty? %>
+    <tr>
+      <td>You have no articles</td>
+    </tr>
+  <% end %>
+
+  <tr height = "20"></tr>
+  <tr>
+  <th>Other Articles</th>
+  </tr>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+  <% if @other_articles.each do |article| %>
+    <tr>
+      <td><%= article.title %></td>
+      <td><%= article.text %></td>
+      <td><%= link_to 'Show', article_path(article) %></td>
+    </tr>
+  <% end.empty? %>
+    <tr>
+      <td>There are other no articles</td>
+    </tr>
+  <% end %>
+</table>

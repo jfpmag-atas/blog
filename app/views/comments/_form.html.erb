@@ -1,0 +1,21 @@
+<%#
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+%>
+
+<%= form_for([@article, @article.comments.build]) do |f| %>
+  <p>
+    <%= f.label :commenter %>
+    <% if current_user %>
+    <%= f.text_field :commenter, :value => current_user.username, :readonly => true %>
+    <% else %>
+    <%= f.text_field :commenter, :value => "Anonymous" %>
+    <% end %>
+  </p>
+  <p>
+    <%= f.text_area :body, size: "30x10" %>
+  </p>
+  <p>
+    <%= f.submit 'Add Comment'%>
+  </p>
+<% end %>

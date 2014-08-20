@@ -1,0 +1,14 @@
+<%= form_for [@tag, @article], url: new_tag_path do |g| %>
+	<table>
+		<tr>
+			<td>
+				<%= g.text_field :name %>
+			</td>
+		</tr>
+		<tr>
+			<td align="right">
+				<%= g.submit "Add" %>
+			</td>
+		</tr>
+	</table>
+<% end %>

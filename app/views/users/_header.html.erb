@@ -1,0 +1,21 @@
+<% if current_user %>
+<table>
+<tr>
+<% if session[:initial_login] == "N" %>
+<td>Logged in as <%= current_user.username %>.</td>
+<% else %>
+<td>Welcome back, <%= current_user.username %>.</td>
+<% end %>
+<td width="10" />
+<td><%= link_to 'Sign Out', sign_out_path %></td>
+</tr>
+</table>
+<% else %>
+<table>
+<tr>
+	<td>
+		<%= link_to 'Sign In', sign_in_path %>
+	</td>
+</tr>
+</table>
+<% end %>

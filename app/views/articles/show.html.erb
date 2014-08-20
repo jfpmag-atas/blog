@@ -1,0 +1,40 @@
+<%#
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+%>
+<%= render "welcome/header" %>
+<p>
+  <h2>Title:
+  <%= @article.title %></h2>
+</p>
+
+<p>
+  <strong>Author:
+  <%= @user.username %></strong>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @article.text %>
+</p>
+
+<p>
+<strong>Tags</strong>
+  <%= render :partial => "tags/form", :article => @article %>
+</p>
+
+<h2>Comments</h2>
+<%= render @article.comments %>
+
+<h2>Add a comment:</h2>
+<%= render "comments/form" %>
+
+<% if current_user %>
+<%= link_to 'Back', articles_path %>
+<% else %>
+<%= link_to 'Back', welcome_index_path %>
+<% end %>
+
+<% if session[:user_id] == @article.user_id %>
+<%= link_to 'Edit', edit_article_path(@article) %>
+<% end %>
