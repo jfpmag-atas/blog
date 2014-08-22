@@ -1,21 +1,22 @@
 class ArticlesController < ApplicationController
-	before_filter :logged_in
+	before_filter :logged_in, :except => [:show]
 
   def new
   	@article 	= Article.new
-  	@tags			= Array.new
-  	@tag 			= Tag.new
+  	@tags			= Tag.all
   end
 
   def create
     @article = Article.new(article_params)
     @article.user_id = session[:user_id]
     session[:initial_login] = "N"
+    puts "=====================#{@article.tags}===================="
+    @article.tags
 
     if @article.save
       redirect_to @article
     else
-      render 'new'
+      redirect_to new_article_path
     end
   end
 
@@ -29,6 +30,7 @@ class ArticlesController < ApplicationController
   	session[:initial_login] = "N"
     @user_articles = Article.where(user_id: session[:user_id])
     @other_articles = Article.where.not(user_id: session[:user_id])
+    @tags = Tag.all
   end
 
   def edit
@@ -53,6 +55,6 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
-      params.require(:article).permit(:title, :text)
+      params.require(:article).permit(:title, :text, :tags => [:id])
     end
 end

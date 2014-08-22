@@ -3,7 +3,7 @@
 # and open the template in the editor.
 %>
 <%= render "welcome/header" %>
-<h1>Listing articles</h1>
+<h1>Articles</h1>
 <table>
   <tr>
     <td><%= link_to 'New article', new_article_path %></td>
@@ -50,4 +50,5 @@
       <td>There are other no articles</td>
     </tr>
   <% end %>
+  <%= render "tags/tags_footer" %>
 </table>

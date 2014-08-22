@@ -1,0 +1,9 @@
+<%#
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+%>
+<% if @article.tags.each do |tag| %>
+  <%= link_to tag.name, tagged_articles_path(tag) %>
+<% end.empty? %>
+  No Tags
+<% end %>

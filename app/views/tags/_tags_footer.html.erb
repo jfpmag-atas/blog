@@ -1,0 +1,13 @@
+<tr height='50', valign='bottom' >
+	<td>
+		Tags:
+	</td>
+</tr>
+<tr>
+  <td>
+  <% if @tags.each do |tag| %>
+	  <%= link_to tag.name, tagged_articles_path(tag) %>
+	<% end.empty? %>
+	<% end %>
+	</td>
+</tr>

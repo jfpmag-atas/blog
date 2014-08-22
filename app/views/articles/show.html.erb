@@ -20,7 +20,18 @@
 
 <p>
 <strong>Tags</strong>
-  <%= render :partial => "tags/form", :article => @article %>
+	<table>
+		<tr>
+			<td><%= render :partial => "tags/tag" %></td>
+		</tr>
+		<tr>
+			<td>
+				<% if session[:user_id] == @article.user_id %>
+			  	<%= render :partial => "tags/form", :article => @article %>
+			  <% end %>
+			</td>
+		</tr>
+	</table> 
 </p>
 
 <h2>Comments</h2>
@@ -29,11 +40,7 @@
 <h2>Add a comment:</h2>
 <%= render "comments/form" %>
 
-<% if current_user %>
-<%= link_to 'Back', articles_path %>
-<% else %>
-<%= link_to 'Back', welcome_index_path %>
-<% end %>
+<%= link_to 'Back', :back %>
 
 <% if session[:user_id] == @article.user_id %>
 <%= link_to 'Edit', edit_article_path(@article) %>

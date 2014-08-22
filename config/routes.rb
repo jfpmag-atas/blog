@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   post "sign_in" => "users#login"
   get	 "new_tag" => "tags#create"
   post "new_tag" => "tags#add"
+  get	 "tagged_articles/:id", to: "tags#tagged_articles", as: 'tagged_articles'
   # post "new_user" => "authentication#register"
 
   # Example of regular route:
