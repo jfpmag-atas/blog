@@ -7,15 +7,17 @@ class ArticlesController < ApplicationController
   end
 
   def create
+  	puts "error!!!!!!!!!!!!!!!!!!!"
     @article = Article.new(article_params)
     @article.user_id = session[:user_id]
     session[:initial_login] = "N"
-    puts "=====================#{@article.tags}===================="
-    @article.tags
+
+    @article.tags = Tag.find(article_params[:tag_ids].reject!(&:empty?))
 
     if @article.save
       redirect_to @article
     else
+    	puts "error!!!!!!!!!!!!!!!!!!!"
       redirect_to new_article_path
     end
   end
@@ -55,6 +57,6 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
-      params.require(:article).permit(:title, :text, :tags => [:id])
+      params.require(:article).permit(:title, :text, {:tag_ids => []})
     end
 end

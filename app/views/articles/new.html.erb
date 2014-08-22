@@ -34,7 +34,7 @@
 
     <tr><td>Tags</td></tr>
     <tr colspan='3'>
-        <td><%= f.collection_check_boxes :tags, @tags, :id, :name %></td>
+        <td><%= f.collection_check_boxes :tag_ids, @tags, :id, :name, {:multiple => true, :include_hidden => false} %></td>
     </tr>
 
     <tr>
