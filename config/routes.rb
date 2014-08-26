@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get	 "new_tag" => "tags#create"
   post "new_tag" => "tags#add"
   get	 "tagged_articles/:id", to: "tags#tagged_articles", as: 'tagged_articles'
+  get	 "articles_by_user/:user_id", to: "articles#articles_by_user", as: 'articles_by_user'
   # post "new_user" => "authentication#register"
 
   # Example of regular route:

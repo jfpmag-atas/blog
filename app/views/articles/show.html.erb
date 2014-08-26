@@ -10,7 +10,7 @@
 
 <p>
   <strong>Author:
-  <%= @user.username %></strong>
+  <%= link_to @user.username, articles_by_user_path(@article.user_id) %></strong>
 </p>
 
 <p>

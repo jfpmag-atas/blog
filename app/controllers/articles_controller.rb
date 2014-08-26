@@ -7,7 +7,6 @@ class ArticlesController < ApplicationController
   end
 
   def create
-  	puts "error!!!!!!!!!!!!!!!!!!!"
     @article = Article.new(article_params)
     @article.user_id = session[:user_id]
     session[:initial_login] = "N"
@@ -17,7 +16,6 @@ class ArticlesController < ApplicationController
     if @article.save
       redirect_to @article
     else
-    	puts "error!!!!!!!!!!!!!!!!!!!"
       redirect_to new_article_path
     end
   end
@@ -53,6 +51,13 @@ class ArticlesController < ApplicationController
     @article.destroy
 
     redirect_to articles_path
+  end
+
+  def articles_by_user
+  	@articles = Article.where(user_id: params[:user_id])
+  	@user = User.find(params[:user_id])
+
+  	render :template => "articles/articles_by_user"
   end
 
   private
