@@ -7,7 +7,7 @@
   <p>
     <%= f.label :commenter %>
     <% if current_user %>
-    <%= f.text_field :commenter, :value => current_user.username, :readonly => true %>
+    <%= f.text_field :commenter, :value => current_user.username %>
     <% else %>
     <%= f.text_field :commenter, :value => "Anonymous" %>
     <% end %>
