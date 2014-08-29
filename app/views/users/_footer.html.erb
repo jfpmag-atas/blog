@@ -1,0 +1,13 @@
+<tr height='50', valign='bottom' >
+	<td>
+		Authors:
+	</td>
+</tr>
+<tr>
+  <td>
+  <% if @users.each do |user| %>
+	  <%= link_to user.username, articles_by_user_path(user.id) %>
+	<% end.empty? %>
+	<% end %>
+	</td>
+</tr>

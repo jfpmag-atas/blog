@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-	before_filter :logged_in, :except => [:show]
+	before_filter :logged_in, :except => [:show, :articles_by_user]
 
   def new
   	@article 	= Article.new
