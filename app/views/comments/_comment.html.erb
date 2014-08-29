@@ -2,18 +2,21 @@
 # To change this template, choose Tools | Templates
 # and open the template in the editor.
 %>
+<table>
+<tr>
+  <td><strong>Commenter:</strong></td>
+  <td><%= comment.commenter %></td>
+</tr> 
 
-<p>
-  <strong>Commenter:</strong>
-  <%= comment.commenter %>
-</p>
+<tr>
+  <td><strong>Comment:</strong></td>
+  <td><%= comment.body %></td>
+</tr> 
 
-<p>
-  <strong>Comment:</strong>
-  <%= comment.body %>
-</p>
-
-<p>
+<tr col_span="3" >
+<td/>
+<td valign="right">
+	<%= link_to "Reply", reply_path(comment.id), :remote => true %>
   <% if current_user %>
 	  <% if comment.commenter == current_user.username || comment.article.user_id == current_user.id %>
 	  <%= link_to 'Remove Comment', [comment.article, comment],
@@ -21,4 +24,39 @@
 	               data: { confirm: 'Are you sure?' } %>
 	  <% end %>
   <% end %>
-</p>
+</td>
+</tr>
+<tr col_span="3">
+	<td/>
+	<td col_span="2">
+		<div id="reply_form" />
+	</td>
+</tr>
+<tr col_span="3">
+	<td col_span="2" />
+	<td>
+		<% comment.replies.each do |reply| %>
+			<tr>
+			  <td><strong>Commenter:</strong></td>
+			  <td><%= reply.commenter %></td>
+			</tr> 
+
+			<tr>
+			  <td><strong>Comment:</strong></td>
+			  <td><%= reply.body %></td>
+			</tr>
+
+			<tr>
+				<td>
+				<% if reply.commenter == current_user.username || comment.article.user_id == current_user.id %>
+				  <%= link_to 'Remove Reply',
+				               delete_reply_path(comment.id, reply.id),
+				               method: :delete,
+				               data: { confirm: 'Are you sure?' } %>
+			  <% end %>
+			  </td>
+		  </tr>
+		<% end %>
+	</td>
+</tr>
+</table>

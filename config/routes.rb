@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   post "new_tag" => "tags#add"
   get	 "tagged_articles/:id", to: "tags#tagged_articles", as: 'tagged_articles'
   get	 "articles_by_user/:user_id", to: "articles#articles_by_user", as: 'articles_by_user'
+  get	 "reply/:id", to: "comments#reply", as: 'reply'
+  post "reply/:comment_id", to: "comments#add_reply", as: "add_reply"
+  delete "reply/:comment_id/:reply_id", to: "comments#delete_reply", as: "delete_reply"
   # post "new_user" => "authentication#register"
 
   # Example of regular route:

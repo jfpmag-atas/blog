@@ -1,0 +1,16 @@
+<%= form_for @reply, url: add_reply_path(@comment.id) do |f| %>
+  <p>
+    <%= f.label "Name" %>
+    <% if current_user %>
+    <%= f.text_field :commenter, :value => current_user.username %>
+    <% else %>
+    <%= f.text_field :commenter, :value => "Anonymous" %>
+    <% end %>
+  </p>
+  <p>
+    <%= f.text_area :body, size: "30x10" %>
+  </p>
+  <p>
+    <%= f.submit 'Reply'%>
+  </p>
+<% end %>
