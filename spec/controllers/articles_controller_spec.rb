@@ -39,6 +39,7 @@ describe ArticlesController, :type => :controller do
 
 			expect(assigns(:articles)).not_to be_empty
 			expect(assigns(:articles).size).to eq(1)
+			should render_template("articles/articles_by_user")
 		end
 	end
 
@@ -48,6 +49,13 @@ describe ArticlesController, :type => :controller do
 
 			get :index
 			expect(assigns(:user_articles)).not_to be_empty
+			expect(assigns(:user_articles).size).to eq(1)
+
+			expect(assigns(:other_articles)).not_to be_empty
+			expect(assigns(:other_articles).size).to eq(1)
+
+			expect(assigns(:tags)).not_to be_empty
+			expect(assigns(:tags).size).to eq(2)
 		end
 
 		it "fetches articles by logged in user with no articles" do
@@ -55,6 +63,12 @@ describe ArticlesController, :type => :controller do
 
 			get :index
 			expect(assigns(:user_articles)).to be_empty
+
+			expect(assigns(:other_articles)).not_to be_empty
+			expect(assigns(:other_articles).size).to eq(2)
+
+			expect(assigns(:tags)).not_to be_empty
+			expect(assigns(:tags).size).to eq(2)
 		end
 	end
 end
