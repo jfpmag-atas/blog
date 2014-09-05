@@ -35,6 +35,8 @@ describe CommentsController, :type => :controller do
 
 			expect(assigns(:comment)).not_to be_nil
 			expect(assigns(:comment).replies).to be_empty
+
+			should redirect_to article_path(assigns(:article))
 		end
 	end
 end
